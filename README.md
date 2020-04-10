@@ -1,68 +1,165 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+customerController////////////////////
 
-## Available Scripts
+// GET: api/Customer/5
+[ResponseType(typeof(Customer))]
+public IHttpActionResult GetCustomer(int id)
+{
+    Customer customer = db.Customers.Find(id);
+    if (customer == null)
+    {
+        return NotFound();
+    }
 
-In the project directory, you can run:
+    return Ok(customer);
+}
 
-### `npm start`
+// PUT: api/Customer/5
+[ResponseType(typeof(void))]
+public IHttpActionResult PutCustomer(int id, Customer customer)
+{
+    if (!ModelState.IsValid)
+    {
+        return BadRequest(ModelState);
+    }
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+    if (id != customer.CustomerID)
+    {
+        return BadRequest();
+    }
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+    db.Entry(customer).State = EntityState.Modified;
 
-### `npm test`
+    try
+    {
+        db.SaveChanges();
+    }
+    catch (DbUpdateConcurrencyException)
+    {
+        if (!CustomerExists(id))
+        {
+            return NotFound();
+        }
+        else
+        {
+            throw;
+        }
+    }
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    return StatusCode(HttpStatusCode.NoContent);
+}
 
-### `npm run build`
+// POST: api/Customer
+[ResponseType(typeof(Customer))]
+public IHttpActionResult PostCustomer(Customer customer)
+{
+    if (!ModelState.IsValid)
+    {
+        return BadRequest(ModelState);
+    }
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    db.Customers.Add(customer);
+    db.SaveChanges();
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+    return CreatedAtRoute("DefaultApi", new { id = customer.CustomerID }, customer);
+}
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+// DELETE: api/Customer/5
+[ResponseType(typeof(Customer))]
+public IHttpActionResult DeleteCustomer(int id)
+{
+    Customer customer = db.Customers.Find(id);
+    if (customer == null)
+    {
+        return NotFound();
+    }
 
-### `npm run eject`
+    db.Customers.Remove(customer);
+    db.SaveChanges();
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+    return Ok(customer);
+}
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+itemController///////////////////////////////////
 
-## Learn More
+// GET: api/Item/5
+        [ResponseType(typeof(Item))]
+        public IHttpActionResult GetItem(int id)
+        {
+            Item item = db.Items.Find(id);
+            if (item == null)
+            {
+                return NotFound();
+            }
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+            return Ok(item);
+        }
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+        // PUT: api/Item/5
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PutItem(int id, Item item)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-### Code Splitting
+            if (id != item.ItemID)
+            {
+                return BadRequest();
+            }
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+            db.Entry(item).State = EntityState.Modified;
 
-### Analyzing the Bundle Size
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ItemExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+            return StatusCode(HttpStatusCode.NoContent);
+        }
 
-### Making a Progressive Web App
+        // POST: api/Item
+        [ResponseType(typeof(Item))]
+        public IHttpActionResult PostItem(Item item)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+            db.Items.Add(item);
+            db.SaveChanges();
 
-### Advanced Configuration
+            return CreatedAtRoute("DefaultApi", new { id = item.ItemID }, item);
+        }
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+        // DELETE: api/Item/5
+        [ResponseType(typeof(Item))]
+        public IHttpActionResult DeleteItem(int id)
+        {
+            Item item = db.Items.Find(id);
+            if (item == null)
+            {
+                return NotFound();
+            }
 
-### Deployment
+            db.Items.Remove(item);
+            db.SaveChanges();
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+            return Ok(item);
+        }
+		
+	

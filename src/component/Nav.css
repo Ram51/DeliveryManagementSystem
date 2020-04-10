@@ -1,0 +1,91 @@
+#nav{
+    background-color: blueviolet;
+    height: 50px;
+    width: auto;
+    color: white;
+    
+}
+#headin{
+    margin-top: 10px;
+    color: white;
+}
+#box{
+    border-color: 1em rgb(122, 82, 82);
+}
+#icon{
+    margin-top: -5px;
+    font-size:50px;
+    color:yellowgreen;
+}
+#msg{
+    margin-left: -5px;
+}
+#text{
+    margin-left: 10px;
+}
+#city{
+    margin-top: 5px;
+}
+
+#img{
+    height:8px;
+    width:180px;
+    background-color: blue;
+
+}
+#arrow{
+    margin-top: 10px;
+    margin-left: -5px;
+    font-size:20px;
+    color: blue;
+}
+#view{
+    height: 50px;
+    background-color: gray;
+    text-align: left; 
+    padding-top: 20px;
+}
+#view2{
+    height: 50px;
+    background-color: gray;
+    text-align: right;
+    padding-top: 20px;
+
+}
+#test2{
+    height: 100px;
+    text-align: center;
+    margin-top: 20px;
+}
+#liv{
+    height: 50px;
+    color:white;
+    background-color: gray;
+   font-size: 11px;
+    margin: 15px;
+    align-content: center;
+    text-align: center;
+}
+#btn{
+    text-align: cenetr;
+    margin-bottom: 10px;
+}
+
+#menu{
+    background-color: violet;
+    text-align: center;
+}
+
+#moving{
+    margin-top: 10px;
+    
+}
+
+#footer{
+    width: 35px;
+    text-align: center;
+    
+}
+#di{
+    
+}
